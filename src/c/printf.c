@@ -1426,12 +1426,12 @@ int vfctprintf(void (*out)(char c, void* extra_arg), void* extra_arg, const char
 
 int printf_(const char* format, ...)
 {
-  //mutex_lock(&Arc_MainTerm.lock);
+  mutex_lock(&Arc_MainTerm.lock);
   va_list args;
   va_start(args, format);
   const int ret = vprintf_(format, args);
   va_end(args);
-  //mutex_unlock(&Arc_MainTerm.lock);
+  mutex_unlock(&Arc_MainTerm.lock);
   return ret;
 }
 
